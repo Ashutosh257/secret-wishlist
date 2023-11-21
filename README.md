@@ -1,7 +1,7 @@
 
 # FLASK App - Secret Wishlist
 
-![Secret Wishlist Home page](secret-list.gif)
+![Secret Wishlist Home page](secret-list.png)
 
 # Setup
 
