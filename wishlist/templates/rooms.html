@@ -3,11 +3,12 @@
 
 {% block content %}
 
-<h1 class="text-white">Rooms</h1>
+<h1 class="text-white m-3">Rooms</h1>
 
 <div class="container">
     <div class="row">
-        <form action="/rooms/join" method="POST">
+        <form action="/rooms/join" method="POST" autocomplete="off" >
+            <input autocomplete="false" name="hidden" type="text" style="display:none;">
             <div class="form-group">
                 <label for="room_id" class="text-white m-2">Paste your room id!</label>
                 <input type="text" class="form-control m-3" id="room_id" aria-describedby="room_id" name="room_id" placeholder="Your Room ID" required>
@@ -21,8 +22,9 @@
 
 <div class="container">
     <div class="row">
-        <form action="/create" method="POST">
+        <form action="/create" method="POST" autocomplete="off" >
             <div class="form-group">
+                <input autocomplete="false" name="hidden" type="text" style="display:none;">
                 <label for="room_name" class="text-white m-2">Room Name: Must be unique</label>
                 <input type="text" class="form-control m-3" id="room_name" aria-describedby="room_name" name="room_name" placeholder="Your Room Name" required>
               </div>
