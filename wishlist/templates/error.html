@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<button type="submit" class="back-button">
+    <a href="/rooms">
+        Go Back to Rooms
+    </a>
+</button>
+
+    <div class="container">
+       <h3 class="text-white">
+           {{context.message}}
+       </h3> 
+    </div>
+
+{% endblock %}
+
+

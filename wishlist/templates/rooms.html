@@ -1,0 +1,78 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="text-white">Rooms</h1>
+
+<div class="container">
+    <div class="row">
+        <form action="/rooms/join" method="POST">
+            <div class="form-group">
+                <label for="room_id" class="text-white m-2">Paste your room id!</label>
+                <input type="text" class="form-control m-3" id="room_id" aria-describedby="room_id" name="room_id" placeholder="Your Room ID" required>
+              </div>
+              <div style="margin-left: 20px;">
+                  <button type="submit" class="btn btn-info" id="joinRoom">Join Room</button>
+              </div>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <form action="/create" method="POST">
+            <div class="form-group">
+                <label for="room_name" class="text-white m-2">Room Name: Must be unique</label>
+                <input type="text" class="form-control m-3" id="room_name" aria-describedby="room_name" name="room_name" placeholder="Your Room Name" required>
+              </div>
+              <div style="margin-left: 20px;">
+                  <button type="submit" class="btn btn-success" id="createRoom">Create Room</button>
+              </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="row">
+        {% if context.rooms %}
+            <table class="table table-dark table-striped table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th style="padding: 20px;">Room Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for room in context.rooms %}
+                        <tr>
+                            <td style="padding: 20px;">
+                                <div class="col-md-7">
+                                    {{ room.name }}
+                                </div>
+                            </td>
+                            <td style="padding: 20px;"> 
+                                <a href="/rooms/{{room.uuid}}" class="btn btn-primary" style="margin-right: 30px;">Open Room</a>
+                                <a href="/rooms/delete/{{room.uuid}}" class="btn btn-danger">Delete Room</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+
+            <!-- {{context.rooms}} -->
+            <h3 class="text-white">
+                No Rooms Found, Let's make one! 😉 ❤️
+            </h3>
+
+        {% endif %}
+
+
+    </div>
+</div>
+    
+{% endblock %}

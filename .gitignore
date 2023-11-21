@@ -1,0 +1,13 @@
+.DS_Store
+
+.env
+.venv
+__pycache__
+*/migrations
+
+
+instance/
+
+db.sqlite3
+Pipfile
+Pipfile.lock

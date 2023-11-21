@@ -1,0 +1,65 @@
+
+{% extends 'base.html' %}
+
+{% block content %} 
+    <div style="margin: 30px;">
+        <a href="/rooms" class="back-button">
+            Go Back to Rooms
+        </a>
+    </div>
+
+    <h3 class="container mb-3 text-white">
+        Room Name: {{context.room.name}}
+    </h3>
+
+    <h4 class="container mb-5 ml-2 text-white">
+        Room ID: {{context.room.uuid}}
+    </h4>
+
+    <form class="container" action="/rooms/{{context.room.uuid}}/create" method="POST">
+        <div class="form-group mt-2 mb-2">
+          <h4 for="message" class="text-white mb-3">Make a Wish List 😎</h4>
+          <input type="text" class="form-control" id="message" aria-describedby="message" name="message" placeholder="Add grocery items or your bucket list!" required>
+        </div>
+        <button type="submit" class="btn btn-primary m-3">Create Item</button>
+      </form>
+
+    <div class="m-5"></div>
+
+    <div class="container">
+        <div class="row g-3">
+            {% if context.contents %}
+                {% for content in context.contents %}
+                    <div class="form-inline">
+                        <div class="d-flex">
+                            <form action="/rooms/{{content.room_id}}/update/{{content.id}}" method="POST" class="d-flex col-md-10">
+                                <div class="col-md-9 mr-2">
+                                    <input type="text" name="amend" value="{{content.content}}" class="form-control" required>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-auto">
+                                    <button type="submit" class="btn btn-warning col">Update</button>
+                                </div>
+                                
+                            </form> 
+                            <div class="col-md-auto">
+                                <form action="/rooms/{{content.room_id}}/delete/{{content.id}}" method="POST">
+                                    <button class="btn btn-danger"> 
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h3 class="text-white">
+                    No List created 😱, Create one now!
+                </h3>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+
